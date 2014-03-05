@@ -1,0 +1,42 @@
+---
+# This playbook contains common plays that will be run on all nodes.
+
+- name: Install ntp 
+  apt: name=ntp state=present
+  tags: ntp
+
+- name: Configure ntp file
+  template: src=ntp.conf.j2 dest=/etc/ntp.conf
+  tags: ntp
+  notify: restart ntp
+
+- name: Start the ntp service
+  service: name=ntp state=started enabled=true
+  tags: ntp
+  
+- name: updates a server
+  apt: update_cache=yes
+  
+- name: upgrade a server
+  shell: apt-get upgrade -y
+  
+- name: install utils
+  action: apt pkg={{ item }} state=installed
+  with_items:
+   - mc
+   - zsh
+   - git
+   - build-essential
+   - postfix
+   - curl
+   - python-apt 
+   - python-pycurl
+   
+# zshell  
+- name: install oh-my-zsh
+  shell: curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh & /bin/true 
+         creates=~/.oh-my-zsh
+         
+- name: Set zsh as default shell
+  action: user name={{user}} shell=/bin/zsh
+  sudo: no

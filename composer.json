@@ -9,6 +9,7 @@
         "covex-nn/phpcb": "1.0.4.1",
         "mockery/mockery": "0.8.0",
         "phploc/phploc" : "2.0.3",
-        "phpdocumentor/phpdocumentor": "2.*"
+        "phpdocumentor/phpdocumentor": "2.*",
+        "theseer/autoload": "dev-master"
     }
 }

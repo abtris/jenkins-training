@@ -1,3 +1,5 @@
+sudo apt-get update 
+sudo apt-get -y upgrade
 sudo apt-get install -y curl git mc vim-nox php5 php5-xdebug php5-sqlite php5-xsl graphviz ant
 wget -q -O - http://pkg.jenkins-ci.org/debian-stable/jenkins-ci.org.key | sudo apt-key add -
 echo "deb http://pkg.jenkins-ci.org/debian-stable binary/" > jenkins.list

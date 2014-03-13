@@ -6,6 +6,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "precise64"
   config.ssh.forward_agent = true
 
+  # vagrant plugin install vagrant-cachier
+  # https://github.com/fgrehm/vagrant-cachier
+  if Vagrant.has_plugin?("vagrant-cachier")
+    config.cache.scope = :box
+  end
+
   config.vm.provider :virtualbox do |vb|
     # Don't boot with headless mode
     # vb.gui = true
